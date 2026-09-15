@@ -13,8 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartEmptyState = document.getElementById('cartEmptyState');
   const cartSubtotalText = document.getElementById('cartSubtotalText');
   const cartGrandTotalText = document.getElementById('cartGrandTotalText');
+  const cartMemberDiscountRow = document.getElementById('cartMemberDiscountRow');
+  const cartMemberDiscountText = document.getElementById('cartMemberDiscountText');
+  const navMemberLink = document.getElementById('navMemberLink');
   const btnCheckoutWhatsApp = document.getElementById('btnCheckoutWhatsApp');
   const btnPrintReceipt = document.getElementById('btnPrintReceipt');
+
+  // Check logged in member
+  const currentMember = JSON.parse(localStorage.getItem('kanjeng_current_user') || 'null');
+  if (currentMember && navMemberLink) {
+    const firstName = currentMember.name ? currentMember.name.split(' ')[0] : 'VIP';
+    navMemberLink.innerHTML = `👑 ${firstName} (VIP 15%)`;
+    navMemberLink.title = `Member ID: ${currentMember.id} - Diskon 15% Aktif`;
+  }
 
   // Hero Lumpia Bite elements
   const lumpiaHeroItem = document.getElementById('lumpiaHeroItem');
@@ -521,8 +532,20 @@ document.addEventListener('DOMContentLoaded', () => {
       cartItemList.appendChild(row);
     });
 
+    const isMember = currentMember && currentMember.discountPercent;
+    const discount = isMember ? Math.round(subtotal * (currentMember.discountPercent / 100)) : 0;
+    const grandTotal = subtotal - discount;
+
     cartSubtotalText.textContent = `Rp ${subtotal.toLocaleString('id-ID')}`;
-    cartGrandTotalText.textContent = `Rp ${subtotal.toLocaleString('id-ID')}`;
+    if (cartMemberDiscountRow && cartMemberDiscountText) {
+      if (isMember && discount > 0) {
+        cartMemberDiscountRow.style.display = 'flex';
+        cartMemberDiscountText.textContent = `-Rp ${discount.toLocaleString('id-ID')}`;
+      } else {
+        cartMemberDiscountRow.style.display = 'none';
+      }
+    }
+    cartGrandTotalText.textContent = `Rp ${grandTotal.toLocaleString('id-ID')}`;
   }
 
   cartTriggerBtn.addEventListener('click', () => {
@@ -554,7 +577,16 @@ document.addEventListener('DOMContentLoaded', () => {
       text += `*${idx + 1}. ${item.name}* (x${item.qty})%0A   - Ket: ${item.subtext}%0A   - Harga: Rp ${lineTotal.toLocaleString('id-ID')}%0A%0A`;
     });
 
-    text += `*TOTAL TAGIHAN: Rp ${subtotal.toLocaleString('id-ID')}*%0A`;
+    const isMember = currentMember && currentMember.discountPercent;
+    const discount = isMember ? Math.round(subtotal * (currentMember.discountPercent / 100)) : 0;
+    const grandTotal = subtotal - discount;
+
+    text += `*SUBTOTAL: Rp ${subtotal.toLocaleString('id-ID')}*%0A`;
+    if (isMember) {
+      text += `*👑 MEMBER VIP KANJENG CLUB:* ${currentMember.name} (ID: ${currentMember.id})%0A`;
+      text += `*DISKON 15% VIP: -Rp ${discount.toLocaleString('id-ID')}*%0A`;
+    }
+    text += `*TOTAL PEMBAYARAN: Rp ${grandTotal.toLocaleString('id-ID')}*%0A`;
     text += `*Metode: Pengiriman Instan / Dine-in*%0A`;
     text += `Mohon konfirmasi ketersediaan & nomor rekening/QRIS ya Kak. Terima kasih!`;
 
@@ -575,10 +607,10 @@ document.addEventListener('DOMContentLoaded', () => {
     rOrderNo.textContent = '#LK-' + Math.floor(Math.random() * 90000 + 10000);
 
     rItemsList.innerHTML = '';
-    let total = 0;
+    let subtotal = 0;
     cart.forEach(item => {
       const lineTotal = item.price * item.qty;
-      total += lineTotal;
+      subtotal += lineTotal;
       const row = document.createElement('div');
       row.className = 'r-row';
       row.innerHTML = `
@@ -588,7 +620,23 @@ document.addEventListener('DOMContentLoaded', () => {
       rItemsList.appendChild(row);
     });
 
-    rTotalAmount.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    const isMember = currentMember && currentMember.discountPercent;
+    const discount = isMember ? Math.round(subtotal * (currentMember.discountPercent / 100)) : 0;
+    const grandTotal = subtotal - discount;
+
+    if (isMember && discount > 0) {
+      const discRow = document.createElement('div');
+      discRow.className = 'r-row';
+      discRow.style.color = '#b87c00';
+      discRow.style.fontWeight = 'bold';
+      discRow.innerHTML = `
+        <span>👑 Diskon VIP (15%):</span>
+        <span>-Rp ${discount.toLocaleString('id-ID')}</span>
+      `;
+      rItemsList.appendChild(discRow);
+    }
+
+    rTotalAmount.textContent = `Rp ${grandTotal.toLocaleString('id-ID')}`;
     receiptModal.classList.add('open');
   });
 

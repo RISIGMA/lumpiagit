@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran Resmi // Kanjeng Club & Kemitraan Lumpia Kanjeng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="daftar.css">
+</head>
+<body class="daftar-page">
+  <!-- Grain & Ambient Steam Background Canvas -->
+  <canvas id="ambientSteamCanvas" class="ambient-steam-canvas"></canvas>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Top Sticky Sensory Bar -->
+  <aside class="sensory-announcement-bar">
+    <div class="announcement-track">
+      <div class="track-item"><span class="badge-dot pulse-gold"></span> BONUS SELAMAT DATANG: VOUCHER DISKON 15% LANGSUNG AKTIF</div>
+      <div class="track-item">🎁 GRATIS 1 PORSI LUMPIA SPESIAL DI HARI ULANG TAHUNMU</div>
+      <div class="track-item">🤝 DIBUKA KEMITRAAN FRANCHISE BATCH 2026 // SLOT TERBATAS TIAP KOTA</div>
+      <div class="track-item"><span class="badge-dot pulse-green"></span> KARTU MEMBER DIGITAL LANGSUNG DAPAT DIUNDUH</div>
+    </div>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="main-navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-emblem">
+          <span class="emblem-wok">🥢</span>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">LUMPIA KANJENG</span>
+          <span class="logo-sub">ESTD. 1978 // SEMARANG HERITAGE</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">← Kembali ke Beranda</a>
+        <a href="index.html#menu-section" class="nav-link">Daftar Menu</a>
+        <a href="index.html#diy-studio" class="nav-link">Rakit Sendiri</a>
+        <a href="daftar.html" class="nav-link active highlight-pill">👑 Pendaftaran Resmi</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="asmr-toggle-btn" id="asmrToggleBtn" title="Aktifkan Suara ASMR & Efek">
+          <span class="asmr-icon">🔊</span>
+          <span class="asmr-label">ASMR ON</span>
+        </button>
+        <a href="index.html#menu-section" class="btn-pesan-nav">
+          <span>🛍️ Pesan Menu</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN REGISTRATION CONTENT WRAPPER -->
+  <main class="reg-main-wrapper">
+    
+    <!-- Hero Headline & Intro -->
+    <section class="reg-hero-header">
+      <div class="reg-hero-badge">
+        <span class="badge-icon">👑</span>
+        <span>PORTAL RESMI ANGGOTA & KEMITRAAN</span>
+      </div>
+      <h1 class="reg-hero-title">
+        Masuk Lingkaran Kehormatan <br>
+        <span class="italic-serif highlight-amber">Kerenyahan Legendaris Kanjeng</span>
+      </h1>
+      <p class="reg-hero-subtitle">
+        Nikmati privilese diskon eksklusif seumur hidup, traktiran ulang tahun, CrunchPoints, atau bangun kerajaan bisnismu sendiri bersama brand lumpia warisan 1978.
+      </p>
+
+      <!-- Segmented Tab Switcher -->
+      <div class="reg-tab-switcher" role="tablist">
+        <button class="reg-tab-btn active" id="tabMemberBtn" role="tab" aria-selected="true" data-tab="member">
+          <span class="tab-icon">✨</span>
+          <span class="tab-title">Member VIP Kanjeng Club</span>
+          <span class="tab-sub">Untuk Pecinta & Pelanggan Setia</span>
+        </button>
+        <button class="reg-tab-btn" id="tabPartnerBtn" role="tab" aria-selected="false" data-tab="partner">
+          <span class="tab-icon">🤝</span>
+          <span class="tab-title">Kemitraan & Franchise</span>
+          <span class="tab-sub">Untuk Mitra Bisnis & Reseller</span>
+        </button>
+        <button class="reg-tab-btn" id="tabCheckBtn" role="tab" aria-selected="false" data-tab="check">
+          <span class="tab-icon">🔍</span>
+          <span class="tab-title">Cek Kartu / Akun Saya</span>
+          <span class="tab-sub">Lihat Kartu & Status Terdaftar</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- CONTENT GRID: FORM COLUMN & LIVE CARD PREVIEW COLUMN -->
+    <div class="reg-layout-grid">
+      
+      <!-- LEFT / MAIN: FORM CONTAINER -->
+      <div class="reg-form-card">
+        
+        <!-- ================= PANEL 1: MEMBER VIP FORM ================= -->
+        <div class="reg-panel active" id="panelMember">
+          <div class="panel-header">
+            <div class="panel-header-text">
+              <span class="panel-badge">PRIVILESE EKSKLUSIF</span>
+              <h2>Formulir Kanjeng Club VIP</h2>
+              <p>Isi data diri di bawah ini untuk menerbitkan Kartu Anggota Digital Kanjeng secara instan.</p>
+            </div>
+            <div class="panel-seal">
+              <span>EST. 1978</span>
+            </div>
+          </div>
+
+          <!-- Benefits Pills Mini Bar -->
+          <div class="benefits-mini-grid">
+            <div class="benefit-item">
+              <span class="b-icon">🏷️</span>
+              <div>
+                <strong>Diskon 15% Otomatis</strong>
+                <small>Setiap pembelian menu apa saja</small>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="b-icon">🎂</span>
+              <div>
+                <strong>Gratis Porsi Ultah</strong>
+                <small>1 Box isi 5 Lumpia saat ultah</small>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="b-icon">🪙</span>
+              <div>
+                <strong>CrunchPoints Cashback</strong>
+                <small>Tukarkan poin dengan merchandise</small>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="b-icon">🔒</span>
+              <div>
+                <strong>Akses Menu Rahasia</strong>
+                <small>Cicipi varian chef sebelum rilis</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member Form -->
+          <form id="memberRegForm" novalidate>
+            
+            <div class="form-row two-col">
+              <div class="form-group">
+                <label for="memberName">Nama Lengkap Sesuai KTP <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">👤</span>
+                  <input type="text" id="memberName" name="memberName" placeholder="Contoh: Raden Mas Danang" required autocomplete="name">
+                </div>
+                <span class="field-error" id="errMemberName"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="memberPhone">Nomor WhatsApp Aktif <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">📱</span>
+                  <input type="tel" id="memberPhone" name="memberPhone" placeholder="Contoh: 081234567890" required autocomplete="tel">
+                </div>
+                <span class="field-help">Untuk konfirmasi voucher & notifikasi promo</span>
+                <span class="field-error" id="errMemberPhone"></span>
+              </div>
+            </div>
+
+            <div class="form-row two-col">
+              <div class="form-group">
+                <label for="memberEmail">Alamat Email <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">✉️</span>
+                  <input type="email" id="memberEmail" name="memberEmail" placeholder="nama@email.com" required autocomplete="email">
+                </div>
+                <span class="field-error" id="errMemberEmail"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="memberDob">Tanggal Lahir <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">🎂</span>
+                  <input type="date" id="memberDob" name="memberDob" required>
+                </div>
+                <span class="field-help">Wajib untuk klaim reward gratis di bulan ultah</span>
+                <span class="field-error" id="errMemberDob"></span>
+              </div>
+            </div>
+
+            <div class="form-row two-col">
+              <div class="form-group">
+                <label for="memberCity">Kota Domisili <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">📍</span>
+                  <select id="memberCity" name="memberCity" required>
+                    <option value="">Pilih Kota Domisili</option>
+                    <option value="Semarang (Pusat Heritage)">Semarang (Pusat Heritage)</option>
+                    <option value="Jakarta Selatan">Jakarta Selatan</option>
+                    <option value="Jakarta Pusat & Barat">Jakarta Pusat & Barat</option>
+                    <option value="Tangerang & BSD">Tangerang & BSD</option>
+                    <option value="Bekasi & Cikarang">Bekasi & Cikarang</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Surabaya">Surabaya</option>
+                    <option value="Yogyakarta">Yogyakarta</option>
+                    <option value="Solo / Surakarta">Solo / Surakarta</option>
+                    <option value="Kota Lainnya di Indonesia">Kota Lainnya di Indonesia</option>
+                  </select>
+                </div>
+                <span class="field-error" id="errMemberCity"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="memberPin">PIN Akses Akun (6 Digit) <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">🔑</span>
+                  <input type="password" id="memberPin" name="memberPin" maxlength="6" placeholder="6 digit angka (misal: 123456)" required>
+                </div>
+                <span class="field-help">Digunakan untuk login & tukar CrunchPoints</span>
+                <span class="field-error" id="errMemberPin"></span>
+              </div>
+            </div>
+
+            <!-- Lumpia Favorit Selector -->
+            <div class="form-group">
+              <label>Pilih Varian Lumpia Favoritmu:</label>
+              <div class="flavor-chips-grid" id="flavorChipsGrid">
+                <button type="button" class="flavor-chip active" data-flavor="Lumpia Basah Rebung Madu Udang">
+                  <span class="f-emoji">🥟</span>
+                  <span class="f-text">Basah Rebung Madu Udang</span>
+                </button>
+                <button type="button" class="flavor-chip" data-flavor="Lumpia Goreng Klasik Semarang">
+                  <span class="f-emoji">🔥</span>
+                  <span class="f-text">Goreng Klasik Semarang</span>
+                </button>
+                <button type="button" class="flavor-chip" data-flavor="Lumpia Spesial Kepiting Telur Asin">
+                  <span class="f-emoji">🦀</span>
+                  <span class="f-text">Kepiting Telur Asin</span>
+                </button>
+                <button type="button" class="flavor-chip" data-flavor="Lumpia Rendang Wagyu Rempah">
+                  <span class="f-emoji">🥩</span>
+                  <span class="f-text">Rendang Wagyu Rempah</span>
+                </button>
+                <button type="button" class="flavor-chip" data-flavor="Lumpia Jamur Truffle Vegan">
+                  <span class="f-emoji">🍄</span>
+                  <span class="f-text">Jamur Truffle Vegan</span>
+                </button>
+              </div>
+              <input type="hidden" id="selectedFlavor" name="selectedFlavor" value="Lumpia Basah Rebung Madu Udang">
+            </div>
+
+            <!-- Agreement Checkbox -->
+            <div class="form-group agreement-group">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="memberAgree" required checked>
+                <span class="checkbox-box"></span>
+                <span class="checkbox-label">
+                  Saya menyetujui Ketentuan Privasi & Program Keanggotaan Kanjeng Club serta berhak atas diskon 15% seumur hidup.
+                </span>
+              </label>
+              <span class="field-error" id="errMemberAgree"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-action-row">
+              <button type="submit" class="btn-submit-reg" id="btnSubmitMember">
+                <span class="btn-icon">👑</span>
+                <span class="btn-text">TERBITKAN KARTU VIP KANJENG SEKARANG</span>
+                <span class="btn-arrow">→</span>
+              </button>
+              <p class="submit-note">🔒 Pendaftaran 100% Gratis. Tanpa biaya bulanan atau tahunan.</p>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- ================= PANEL 2: PARTNERSHIP FORM ================= -->
+        <div class="reg-panel" id="panelPartner">
+          <div class="panel-header">
+            <div class="panel-header-text">
+              <span class="panel-badge badge-partner">PELUANG USAHA 2026</span>
+              <h2>Formulir Kemitraan & Franchise</h2>
+              <p>Bergabunglah menjadi mitra resmi Lumpia Kanjeng di kotamu dengan dukungan penuh sistem kuliner warisan.</p>
+            </div>
+            <div class="panel-seal seal-gold">
+              <span>ROI 3-6 BULAN</span>
+            </div>
+          </div>
+
+          <!-- Partnership Packages Grid -->
+          <div class="package-selection-header">
+            <label>Pilih Paket Kemitraan yang Diminati: <span class="req">*</span></label>
+          </div>
+          <div class="packages-grid" id="packagesGrid">
+            
+            <div class="package-card active" data-package="Gerobak Heritage Kayu Jati" data-price="Rp 9.500.000" data-roi="3-4 Bulan">
+              <div class="pkg-top">
+                <span class="pkg-badge">POPULER</span>
+                <span class="pkg-icon">🏮</span>
+              </div>
+              <h3 class="pkg-title">Gerobak Heritage Jati</h3>
+              <p class="pkg-desc">Gerobak estetik khas Semarang, kompor high-pressure, wajan baja 60cm, starter kit 200 roll lumpia siap goreng.</p>
+              <div class="pkg-price-row">
+                <span class="pkg-price">Rp 9.500.000</span>
+                <span class="pkg-unit">/ Sekali Bayar</span>
+              </div>
+              <ul class="pkg-perks">
+                <li>✓ Gerobak kayu jati ukir portable</li>
+                <li>✓ Bahan baku baku beku tanpa bau pesing</li>
+                <li>✓ Standarisasi resep saus cocol rahasia</li>
+              </ul>
+            </div>
+
+            <div class="package-card" data-package="Cloud Kitchen & Reseller Frozen" data-price="Rp 4.800.000" data-roi="1-2 Bulan">
+              <div class="pkg-top">
+                <span class="pkg-badge badge-blue">HEMAT MODAL</span>
+                <span class="pkg-icon">📦</span>
+              </div>
+              <h3 class="pkg-title">Reseller & Cloud Kitchen</h3>
+              <p class="pkg-desc">Fokus jualan frozen pack vakum dan pesan antar online (GrabFood/GoFood/ShopeeFood) dari rumah.</p>
+              <div class="pkg-price-row">
+                <span class="pkg-price">Rp 4.800.000</span>
+                <span class="pkg-unit">/ Sekali Bayar</span>
+              </div>
+              <ul class="pkg-perks">
+                <li>✓ Pasokan frozen vakum tahan 6 bulan</li>
+                <li>✓ Aset foto produk & materi iklan digital</li>
+                <li>✓ Akun merchant online dibantu setup</li>
+              </ul>
+            </div>
+
+            <div class="package-card" data-package="Island Booth Mall & Resto Kanjeng" data-price="Rp 28.000.000" data-roi="5-6 Bulan">
+              <div class="pkg-top">
+                <span class="pkg-badge badge-gold">PREMIUM OUTLET</span>
+                <span class="pkg-icon">🏛️</span>
+              </div>
+              <h3 class="pkg-title">Island Booth Mall / Resto</h3>
+              <p class="pkg-desc">Konsep booth modern stainless gold untuk food court mall, bandara, atau ruko strategis.</p>
+              <div class="pkg-price-row">
+                <span class="pkg-price">Rp 28.000.000</span>
+                <span class="pkg-unit">/ Paket Lengkap</span>
+              </div>
+              <ul class="pkg-perks">
+                <li>✓ Booth island mewah siap operasional</li>
+                <li>✓ Pelatihan barista & chef langsung</li>
+                <li>✓ Sistem POS kasir & lisensi brand 3 thn</li>
+              </ul>
+            </div>
+
+          </div>
+          <input type="hidden" id="selectedPackage" name="selectedPackage" value="Gerobak Heritage Kayu Jati">
+
+          <!-- Partner Form -->
+          <form id="partnerRegForm" novalidate>
+            
+            <div class="form-row two-col">
+              <div class="form-group">
+                <label for="partnerName">Nama Lengkap Pemohon / Calon Mitra <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">👤</span>
+                  <input type="text" id="partnerName" name="partnerName" placeholder="Contoh: Budi Prasetyo, S.E." required>
+                </div>
+                <span class="field-error" id="errPartnerName"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="partnerPhone">Nomor WhatsApp Bisnis <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">📱</span>
+                  <input type="tel" id="partnerPhone" name="partnerPhone" placeholder="Contoh: 081298765432" required>
+                </div>
+                <span class="field-help">Tim kemitraan pusat akan menghubungi nomor ini</span>
+                <span class="field-error" id="errPartnerPhone"></span>
+              </div>
+            </div>
+
+            <div class="form-row two-col">
+              <div class="form-group">
+                <label for="partnerEmail">Email Bisnis <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">✉️</span>
+                  <input type="email" id="partnerEmail" name="partnerEmail" placeholder="partner@domain.com" required>
+                </div>
+                <span class="field-error" id="errPartnerEmail"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="partnerCity">Rencana Kota / Lokasi Buka <span class="req">*</span></label>
+                <div class="input-with-icon">
+                  <span class="input-icon">📍</span>
+                  <input type="text" id="partnerCity" name="partnerCity" placeholder="Contoh: Semarang Barat / BSD Tangerang" required>
+                </div>
+                <span class="field-error" id="errPartnerCity"></span>
+              </div>
+            </div>
+
+            <div class="form-row two-col">
+              <div class="form-group">
+                <label for="partnerExperience">Pengalaman Usaha Kuliner</label>
+                <div class="input-with-icon">
+                  <span class="input-icon">💼</span>
+                  <select id="partnerExperience" name="partnerExperience">
+                    <option value="Pemula (Belum pernah usaha kuliner)">Pemula (Belum pernah usaha kuliner, butuh bimbingan penuh)</option>
+                    <option value="Sedang menjalankan usaha F&B lain">Sedang menjalankan usaha F&B lain</option>
+                    <option value="Sudah berpengalaman franchise kuliner">Sudah berpengalaman mengelola franchise</option>
+                    <option value="Pernah usaha tapi ganti haluan">Pernah usaha kuliner sebelumnya</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="partnerTimeline">Target Waktu Buka Usaha</label>
+                <div class="input-with-icon">
+                  <span class="input-icon">⏱️</span>
+                  <select id="partnerTimeline" name="partnerTimeline">
+                    <option value="Segera dalam bulan ini">Segera dalam bulan ini</option>
+                    <option value="1 - 2 Bulan ke depan">1 - 2 Bulan ke depan</option>
+                    <option value="3 - 6 Bulan ke depan">3 - 6 Bulan ke depan</option>
+                    <option value="Masih riset lokasi & modal">Masih riset lokasi & kesiapan modal</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="partnerNotes">Catatan / Rencana Lokasi Khusus (Opsional)</label>
+              <textarea id="partnerNotes" name="partnerNotes" rows="3" placeholder="Ceritakan singkat tentang titik lokasi yang Anda incar (misal: di depan minimarket ramai, ruko sendiri, dekat kampus, dll)..."></textarea>
+            </div>
+
+            <div class="form-group agreement-group">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="partnerAgree" required checked>
+                <span class="checkbox-box"></span>
+                <span class="checkbox-label">
+                  Data yang saya masukkan adalah benar dan saya bersedia menerima proposal resmi kemitraan & dihubungi tim pusat Lumpia Kanjeng.
+                </span>
+              </label>
+              <span class="field-error" id="errPartnerAgree"></span>
+            </div>
+
+            <div class="form-action-row">
+              <button type="submit" class="btn-submit-reg btn-partner" id="btnSubmitPartner">
+                <span class="btn-icon">🤝</span>
+                <span class="btn-text">AJUKAN KEMITRAAN & DAPATKAN PROPOSAL RESMI</span>
+                <span class="btn-arrow">→</span>
+              </button>
+              <p class="submit-note">📑 Tim Kemitraan Kanjeng akan mengirimkan Dokumen PDF Proyeksi Keuangan & ROI via WhatsApp.</p>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- ================= PANEL 3: CEK STATUS / AKUN SAYA ================= -->
+        <div class="reg-panel" id="panelCheck">
+          <div class="panel-header">
+            <div class="panel-header-text">
+              <span class="panel-badge">PORTAL ANGGOTA</span>
+              <h2>Cek Kartu & Status Keanggotaan</h2>
+              <p>Masukkan nomor WhatsApp atau Email yang pernah didaftarkan untuk menampilkan kembali kartu member digital dan kode diskonmu.</p>
+            </div>
+          </div>
+
+          <form id="checkForm" class="check-member-box" novalidate>
+            <div class="form-group">
+              <label for="lookupQuery">Nomor WhatsApp atau Email Terdaftar <span class="req">*</span></label>
+              <div class="search-input-wrap">
+                <input type="text" id="lookupQuery" placeholder="Masukkan 0812... atau nama@email.com" required>
+                <button type="submit" class="btn-lookup" id="btnLookup">
+                  <span>🔍 Cari Data</span>
+                </button>
+              </div>
+              <span class="field-error" id="errLookup"></span>
+            </div>
+          </form>
+
+          <!-- Result Area -->
+          <div class="lookup-result-area" id="lookupResultArea" style="display: none;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: DYNAMIC 3D VIRTUAL CARD PREVIEW & PERKS WIDGET -->
+      <aside class="reg-card-preview-col">
+        
+        <div class="preview-sticky-wrap">
+          <div class="preview-header">
+            <div class="live-dot-wrap">
+              <span class="live-indicator-dot"></span>
+              <span class="live-text">PRATINJAU LANGSUNG KARTU DIGITAL</span>
+            </div>
+            <span class="preview-sub">Otomatis berubah saat mengisi formulir</span>
+          </div>
+
+          <!-- 3D TILT VIRTUAL CARD ELEMENT -->
+          <div class="virtual-card-wrapper" id="virtualCardWrapper">
+            <div class="virtual-card" id="virtualCard">
+              
+              <!-- Card Sheen / Hologram Overlay -->
+              <div class="card-shimmer"></div>
+              <div class="card-glare" id="cardGlare"></div>
+
+              <!-- Card Top Row: Brand & Tier -->
+              <div class="card-top-bar">
+                <div class="card-brand">
+                  <span class="c-emblem">🥢</span>
+                  <div>
+                    <span class="c-brand-name">LUMPIA KANJENG</span>
+                    <span class="c-heritage">EST. 1978 // SEMARANG</span>
+                  </div>
+                </div>
+                <div class="card-tier-pill" id="cardTierPill">
+                  <span class="tier-crown">👑</span>
+                  <span class="tier-label" id="cardTierText">VIP ROYAL</span>
+                </div>
+              </div>
+
+              <!-- Chip EMV & Contactless Icon -->
+              <div class="card-chip-row">
+                <div class="gold-chip">
+                  <div class="chip-lines"></div>
+                </div>
+                <div class="contactless-symbol">
+                  <span class="wifi-wave">)))</span>
+                </div>
+              </div>
+
+              <!-- Card Number (Simulated) -->
+              <div class="card-number-display">
+                <span class="num-chunk" id="cardChunk1">LK78</span>
+                <span class="num-chunk" id="cardChunk2">9902</span>
+                <span class="num-chunk" id="cardChunk3">8841</span>
+                <span class="num-chunk highlight" id="cardChunk4">7712</span>
+              </div>
+
+              <!-- Card Holder & Meta Info -->
+              <div class="card-meta-row">
+                <div class="card-holder-col">
+                  <span class="meta-label">PEMILIK KARTU (MEMBER)</span>
+                  <span class="meta-val holder-name" id="cardHolderName">RADEN MAS DANANG</span>
+                </div>
+
+                <div class="card-expiry-col">
+                  <span class="meta-label">STATUS AKTIF</span>
+                  <span class="meta-val highlight-gold" id="cardExpiry">SEUMUR HIDUP</span>
+                </div>
+              </div>
+
+              <!-- Card Bottom Row: Kota & Varian / Package -->
+              <div class="card-bottom-row">
+                <div class="c-detail-item">
+                  <span class="c-sublabel">DOMISILI</span>
+                  <span class="c-subval" id="cardCityText">Semarang Heritage</span>
+                </div>
+                <div class="c-detail-item text-right">
+                  <span class="c-sublabel" id="cardFlavorLabel">VARIAN FAVORIT</span>
+                  <span class="c-subval" id="cardFlavorText">Rebung Madu Udang</span>
+                </div>
+              </div>
+
+              <!-- Subtle Watermark -->
+              <div class="card-watermark">100% RENYAH</div>
+
+            </div>
+          </div>
+
+          <!-- Card Perks Highlights Accordion -->
+          <div class="card-perks-box">
+            <h4 class="perks-heading">
+              <span>Keistimewaan Pemegang Kartu Ini:</span>
+            </h4>
+            <ul class="perks-list-styled" id="perksListStyled">
+              <li>
+                <span class="p-check">✓</span>
+                <span><strong>Diskon 15%</strong> seumur hidup di semua gerai Lumpia Kanjeng.</span>
+              </li>
+              <li>
+                <span class="p-check">✓</span>
+                <span><strong>1 Box Gratis (Isi 5)</strong> saat hari ulang tahunmu.</span>
+              </li>
+              <li>
+                <span class="p-check">✓</span>
+                <span><strong>Fast Track Prioritas Antrean</strong> saat jam ramai kedai.</span>
+              </li>
+              <li>
+                <span class="p-check">✓</span>
+                <span><strong>CrunchPoints</strong> yang bisa ditukar voucher & piring keramik Kanjeng.</span>
+              </li>
+            </ul>
+
+            <div class="trust-guarantee-badge">
+              <span class="shield-icon">🛡️</span>
+              <div>
+                <strong>Jaminan Kerenyahan Tradisional Sejak 1978</strong>
+                <small>Bebas pengawet, rebung dimasak 6 jam tanpa bau, digoreng minyak kelapa alami.</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- ================= SUCCESS CELEBRATION MODAL ================= -->
+  <div class="reg-modal-backdrop" id="successModal">
+    <div class="reg-modal-content">
+      <button class="modal-close-btn" id="closeSuccessModal" aria-label="Tutup">×</button>
+      
+      <div class="modal-celebrate-header">
+        <div class="confetti-icon">🎉</div>
+        <span class="modal-pill-tag">PENDAFTARAN BERHASIL</span>
+        <h2 id="modalTitle">Sugeng Rawuh, Sang Anggota Kehormatan!</h2>
+        <p id="modalSubtitle">
+          Kartu digital resmimu telah terbit dan tersimpan di sistem Lumpia Kanjeng. Diskon 15% langsung aktif untuk pesanan pertamamu hari ini!
+        </p>
+      </div>
+
+      <!-- Generated Card Preview Container for Export -->
+      <div class="modal-card-canvas-wrap">
+        <canvas id="cardExportCanvas" width="800" height="480" class="card-export-canvas"></canvas>
+      </div>
+
+      <!-- Action Buttons in Modal -->
+      <div class="modal-action-buttons">
+        <button class="btn-modal-action btn-download" id="btnDownloadCard">
+          <span class="btn-ic">📥</span>
+          <span>Unduh Gambar Kartu Digital (PNG)</span>
+        </button>
+
+        <button class="btn-modal-action btn-wa" id="btnSendWhatsapp">
+          <span class="btn-ic">💬</span>
+          <span id="btnWaText">Kirim Konfirmasi ke WhatsApp Kanjeng</span>
+        </button>
+
+        <a href="index.html#menu-section" class="btn-modal-action btn-shop" id="btnUseDiscount">
+          <span class="btn-ic">🔥</span>
+          <span>Mulai Pesan Menu dengan Diskon 15%</span>
+        </a>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer-note">
+        <p>💡 Simpan nomor kartu atau tangkapan layar kartu ini. Cukup sebutkan No. WhatsApp saat pesan di kedai atau online.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Hub -->
+  <div class="toast-hub" id="toastHub"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand-col">
+        <div class="footer-logo">
+          <span class="emblem-wok">🥢</span>
+          <span class="logo-title">LUMPIA KANJENG</span>
+        </div>
+        <p class="footer-tagline">
+          Mahakarya Kerenyahan Tradisional & Modern Semarang Sejak 1978. Menjaga warisan cita rasa rebung manis gurih autentik di setiap gulungan.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Navigasi Utama</h4>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="index.html#menu-section">Daftar Menu</a></li>
+          <li><a href="index.html#diy-studio">Rakit Sendiri</a></li>
+          <li><a href="daftar.html">Pendaftaran Resmi</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Layanan Pelanggan & Kemitraan</h4>
+        <ul>
+          <li>WhatsApp: +62 812-8899-7800</li>
+          <li>Email Kemitraan: mitra@lumpiakanjeng.com</li>
+          <li>Instagram: @lumpiakanjeng.id</li>
+          <li>Jam Operasional: 08:00 - 22:00 WIB</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Lumpia Kanjeng. Mahakarya Kerenyahan Indonesia. Hak Cipta Dilindungi.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="audio.js"></script>
+  <script src="daftar.js"></script>
+</body>
+</html>
