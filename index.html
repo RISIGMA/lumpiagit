@@ -37,12 +37,15 @@
         </div>
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" id="mainNavLinks">
         <a href="#menu-section" class="nav-link">Daftar Menu</a>
         <a href="#diy-studio" class="nav-link highlight-pill">✨ Rakit Sendiri (DIY)</a>
         <a href="#wok-asmr" class="nav-link">Studio ASMR</a>
         <a href="#location-section" class="nav-link">Lokasi & Jam Buka</a>
-        <a href="login.html" class="nav-link">Login</a>
+        <span id="navAuthSlot" style="display: inline-flex; align-items: center; gap: 10px;">
+          <a href="login.html" class="nav-link" id="navLoginLink">Masuk</a>
+          <a href="daftar.html" class="nav-link highlight-gold-pill" id="navRegisterLink">👑 Daftar</a>
+        </span>
       </nav>
 
       <div class="nav-actions">
@@ -551,6 +554,8 @@
           <li><a href="#diy-studio">Rakit Sendiri</a></li>
           <li><a href="#wok-asmr">ASMR Wajan</a></li>
           <li><a href="#location-section">Lokasi Kedai</a></li>
+          <li><a href="login.html">Masuk Akun (Login)</a></li>
+          <li><a href="daftar.html">👑 Pendaftaran Member & Mitra</a></li>
         </ul>
       </div>
 
@@ -592,6 +597,12 @@
 
       <!-- Cart Footer & Checkout Action -->
       <div class="cart-footer" id="cartFooter">
+        <!-- Cart Member Notice -->
+        <div class="cart-member-notice" id="cartMemberNotice">
+          <span>💡 Member Kanjeng Club dapat diskon 15%!</span>
+          <a href="login.html" id="cartAuthLink">Masuk / Daftar</a>
+        </div>
+
         <div class="cart-price-breakdown">
           <div class="breakdown-row">
             <span>Subtotal Menu</span>
@@ -600,6 +611,10 @@
           <div class="breakdown-row">
             <span>Kemasan Besek & Box Aman</span>
             <span class="free-tag">GRATIS</span>
+          </div>
+          <div class="breakdown-row member-discount-row" id="cartMemberDiscountRow" style="display: none; color: #ffc436; font-weight: 700;">
+            <span>Diskon Member VIP (15%)</span>
+            <span id="cartMemberDiscountText">-Rp 0</span>
           </div>
           <div class="breakdown-row total-row">
             <span>Total Pembayaran</span>
