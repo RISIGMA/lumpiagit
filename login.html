@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - LUMPIA KANJENG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .auth-card {
+      background: radial-gradient(circle at 50% 50%, #1e3328 0%, #11221a 100%);
+      border: 2px solid var(--border-emerald); 
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: var(--shadow-lumpia);
+      text-align: center;
+    }
+    .auth-header {
+      margin-bottom: 30px;
+    }
+    .auth-title {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: #fff;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+    .auth-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gold-bright);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .form-control {
+      width: 100%;
+      background: #0c1813;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-cream);
+      font-family: var(--font-sans);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 10px rgba(240, 165, 0, 0.2);
+    }
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
+      border: none;
+      color: #111;
+      padding: 14px;
+      border-radius: 40px;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(240, 165, 0, 0.4);
+      margin-top: 30px;
+      transition: all 0.15s ease;
+    }
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(240, 165, 0, 0.6);
+    }
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-top: 25px;
+      transition: color 0.15s ease;
+    }
+    .back-home:hover {
+      color: var(--gold-bright);
+    }
+  </style>
+</head>
+<body>
+  <!-- Grain & Ambient Steam Background Canvas (Shared from main style) -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <section class="auth-section">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="index.html" class="brand-logo" style="justify-content: center;">
+          <div class="logo-emblem">
+            <span class="emblem-wok">🥢</span>
+          </div>
+        </a>
+        <h2 class="auth-title">Masuk Kedai</h2>
+        <p class="auth-desc">Masuk untuk mengakses portal rahasia Kanjeng.</p>
+      </div>
+      
+      <form action="#" method="POST">
+        <div class="form-group">
+          <label class="form-label" for="username">USERNAME / EMAIL</label>
+          <input type="text" id="username" name="username" class="form-control" placeholder="Masukkan username" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="password">PASSWORD RAHASIA</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
+        </div>
+        
+        <button type="submit" class="btn-login">
+          <span>🔥 MASUK KEDAI</span>
+        </button>
+      </form>
+      
+      <a href="index.html" class="back-home">
+        <span>← Kembali ke Halaman Utama</span>
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>
