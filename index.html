@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMPIA KANJENG // Mahakarya Kerenyahan Tradisional & Modern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Grain & Ambient Steam Background Canvas -->
+  <canvas id="ambientSteamCanvas" class="ambient-steam-canvas"></canvas>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Top Sticky Announcement & Sensory Bar -->
+  <aside class="sensory-announcement-bar">
+    <div class="announcement-track">
+      <div class="track-item"><span class="badge-dot pulse-gold"></span> REBUNG SEGAR PILIHAN TANPA BAU // 100% ALAMI</div>
+      <div class="track-item">🔥 DI GORENG DADAKAN DENGAN MINYAK KELAPA PREMIUM</div>
+      <div class="track-item">🚚 PENGIRIMAN KILAT DALAM KOTA & VAKUM FROZEN SELURUH INDONESIA</div>
+      <div class="track-item"><span class="badge-dot pulse-green"></span> KEDAI BUKA HARI INI HINGGA 22:00 WIB</div>
+    </div>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="main-navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-emblem">
+          <span class="emblem-wok">🥢</span>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">LUMPIA KANJENG</span>
+          <span class="logo-sub">ESTD. 1978 // SEMARANG HERITAGE</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#menu-section" class="nav-link">Daftar Menu</a>
+        <a href="#diy-studio" class="nav-link highlight-pill">✨ Rakit Sendiri (DIY)</a>
+        <a href="#wok-asmr" class="nav-link">Studio ASMR</a>
+        <a href="#location-section" class="nav-link">Lokasi & Jam Buka</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Audio ASMR Toggle -->
+        <button class="asmr-toggle-btn" id="asmrToggleBtn" title="Aktifkan Suara Renyah & Sizzle ASMR">
+          <span class="asmr-icon">🔊</span>
+          <span class="asmr-label">ASMR RENYAH ON</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button class="cart-trigger-btn" id="cartTriggerBtn">
+          <span class="cart-icon">🛍️</span>
+          <span class="cart-title">Keranjang</span>
+          <span class="cart-badge" id="cartBadgeCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION: THE INTERACTIVE GOLDEN CRUNCH -->
+  <section class="hero-section">
+    <div class="hero-container">
+      
+      <div class="hero-text-col">
+        <div class="hero-tag">
+          <span class="tag-icon">✨</span>
+          <span>BUKAN LUMPIA BIASA // 100% CRUNCH REVOLUTION</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Kerenyahan Emas, <br>
+          <span class="italic-serif highlight-amber">Kenikmatan Legendaris</span> <br>
+          di Setiap Gigitan.
+        </h1>
+
+        <p class="hero-desc">
+          Dibuat dari resep rahasia turun-temurun sejak 1978. Rebung manis gurih yang dimasak 6 jam tanpa bau pesing, berpadu udang laut segar, ayam kampung cincang, dan saus cocol bawang putih kental yang bikin ketagihan.
+        </p>
+
+        <div class="hero-action-group">
+          <a href="#menu-section" class="btn-primary" id="heroExploreBtn">
+            <span>🔥 Pesan Lumpia Hangat</span>
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="#diy-studio" class="btn-secondary" id="heroCustomBtn">
+            <span>🎨 Rakit Isian Impianmu</span>
+          </a>
+        </div>
+
+        <div class="hero-stats-row">
+          <div class="stat-box">
+            <span class="stat-number">0.4s</span>
+            <span class="stat-label">Waktu Crunch Audio</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-box">
+            <span class="stat-number">4.9★</span>
+            <span class="stat-label">12.500+ Ulasan Puas</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-box">
+            <span class="stat-number">0%</span>
+            <span class="stat-label">Bebas Bau Rebung</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Interactive 3D/Canvas Lumpia Bite Playground -->
+      <div class="hero-visual-col">
+        <div class="hero-interactive-card" id="heroInteractiveLumpia">
+          
+          <div class="card-badge-floating">
+            <span>💡 Coba Klik / Hover Lumpia!</span>
+          </div>
+
+          <!-- Realistic Layered Lumpia Graphic Container -->
+          <div class="lumpia-stage">
+            <div class="lumpia-glow-plate"></div>
+            
+            <!-- The Lumpia Object (Interactive click to bite) -->
+            <div class="interactive-lumpia-wrapper" id="lumpiaHeroItem" title="Klik untuk dengar suara kriuk dan lihat isiannya!">
+              <div class="lumpia-roll golden-fry" id="lumpiaRollMesh">
+                <div class="roll-skin">
+                  <div class="crust-blister b1"></div>
+                  <div class="crust-blister b2"></div>
+                  <div class="crust-blister b3"></div>
+                  <div class="steam-vapors">
+                    <span class="steam-line s1"></span>
+                    <span class="steam-line s2"></span>
+                    <span class="steam-line s3"></span>
+                  </div>
+                </div>
+
+                <!-- Exposed cross-section when bitten -->
+                <div class="lumpia-cross-section" id="lumpiaCrossSection">
+                  <div class="filling-rebung"></div>
+                  <div class="filling-shrimp"></div>
+                  <div class="filling-chicken"></div>
+                  <div class="filling-sauce-drip"></div>
+                </div>
+              </div>
+
+              <!-- Sauce Dip Bowl Next to It -->
+              <div class="sauce-dip-bowl" id="sauceDipBowl">
+                <div class="sauce-liquid">
+                  <div class="sauce-bubble"></div>
+                </div>
+                <div class="fresh-chili-garnish">🌶️</div>
+                <div class="scallion-garnish">🧅</div>
+              </div>
+            </div>
+
+            <!-- Particle Canvas for Crumbs Explosion -->
+            <canvas id="crumbCanvas" class="crumb-canvas"></canvas>
+          </div>
+
+          <div class="lumpia-interactive-controls">
+            <button class="bite-btn" id="btnBiteHero">
+              <span class="bite-emoji">🥢</span>
+              <span class="bite-text">GIGIT & DENGAR KRIUK (ASMR)</span>
+            </button>
+            <button class="reset-bite-btn" id="btnResetBite" title="Pulihkan Lumpia">↺</button>
+          </div>
+          
+          <div class="flavor-pills-row">
+            <span class="f-pill">✓ Rebung Madu 6 Jam</span>
+            <span class="f-pill">✓ Udang Segar Laut</span>
+            <span class="f-pill">✓ Kulit Super Tipis</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: MENU ETALASE KELEZATAN -->
+  <section class="section-container menu-section" id="menu-section">
+    <div class="section-header text-center">
+      <span class="section-subtitle">PILIHAN MENU UNGGULAN</span>
+      <h2 class="section-title">Etalase Kelezatan Kanjeng</h2>
+      <p class="section-desc">Pilih varian favoritmu dalam kondisi siap santap hangat atau kemasan vakum beku siap goreng.</p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="menu-tabs-bar">
+      <button class="menu-tab-btn active" data-category="all">Semua Menu (6)</button>
+      <button class="menu-tab-btn" data-category="goreng">Lumpia Goreng (Garing Emas)</button>
+      <button class="menu-tab-btn" data-category="basah">Lumpia Basah (Lembut Gurih)</button>
+      <button class="menu-tab-btn" data-category="special">Special Fusion</button>
+      <button class="menu-tab-btn" data-category="besek">Paket Besek Hantaran</button>
+    </div>
+
+    <!-- Menu Cards Grid -->
+    <div class="menu-grid" id="menuGridContainer">
+      <!-- Generated Dynamically via JS with Interactive Bite & Add to Cart -->
+    </div>
+  </section>
+
+  <!-- SECTION 3: MIND-BLOWING DIY CUSTOM ROLL STUDIO -->
+  <section class="section-container diy-section" id="diy-studio">
+    <div class="diy-wrapper">
+      
+      <div class="diy-header">
+        <div class="diy-badge">LABORATORIUM RASA // CREATE YOUR OWN ROLL</div>
+        <h2 class="diy-title">Rakit Lumpia Impianmu Sendiri</h2>
+        <p class="diy-desc">Pilih jenis kulit, campurkan isian premium sesukamu, pilih saus cocolan rahasia, lalu tonton lumpia pesananmu digulung dan digoreng live di wajan!</p>
+      </div>
+
+      <div class="diy-workbench-grid">
+        
+        <!-- Left: Ingredient Selection Controls -->
+        <div class="diy-controls-panel">
+          
+          <!-- Step 1: Skin -->
+          <div class="ingredient-step-box">
+            <div class="step-num-title">
+              <span class="step-num">1</span>
+              <h4>PILIH KULIT LUMPIA:</h4>
+            </div>
+            <div class="options-pill-grid" id="skinOptions">
+              <button class="opt-pill active" data-type="skin" data-name="Kulit Emas Renyah" data-price="0" data-crisp="100" data-color="#e28822">
+                <span class="opt-icon">🥐</span>
+                <div class="opt-info">
+                  <strong>Crispy Golden Skin</strong>
+                  <span>Garing renyah maksimal</span>
+                </div>
+              </button>
+              <button class="opt-pill" data-type="skin" data-name="Kulit Basah Sutra" data-price="0" data-crisp="10" data-color="#f5eccb">
+                <span class="opt-icon">🥟</span>
+                <div class="opt-info">
+                  <strong>Soft Basah Silk</strong>
+                  <span>Lembut lumer & chewy</span>
+                </div>
+              </button>
+              <button class="opt-pill" data-type="skin" data-name="Kulit Arang Bambu" data-price="3000" data-crisp="90" data-color="#2b2d35">
+                <span class="opt-icon">🖤</span>
+                <div class="opt-info">
+                  <strong>Charcoal Detox (+3k)</strong>
+                  <span>Wangi arang bambu unik</span>
+                </div>
+              </button>
+              <button class="opt-pill" data-type="skin" data-name="Kulit Pandan Suji" data-price="2000" data-crisp="85" data-color="#558b2f">
+                <span class="opt-icon">🌿</span>
+                <div class="opt-info">
+                  <strong>Pandan Wangi (+2k)</strong>
+                  <span>Aroma pandan alami</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Fillings (Multi-select) -->
+          <div class="ingredient-step-box">
+            <div class="step-num-title">
+              <span class="step-num">2</span>
+              <h4>PILIH ISIAN UTAMA (BEBAS KOMBINASI):</h4>
+            </div>
+            <div class="options-pill-grid" id="fillingOptions">
+              <button class="opt-pill active" data-type="filling" data-name="Rebung Madu Kanjeng" data-price="12000" data-sweet="40" data-savory="60">
+                <span class="opt-icon">🎋</span>
+                <div class="opt-info">
+                  <strong>Rebung Madu Legendaris</strong>
+                  <span>Wajib ada • Manis gurih 6 jam</span>
+                </div>
+              </button>
+              <button class="opt-pill active" data-type="filling" data-name="Udang Laut Cincang" data-price="8000" data-sweet="20" data-savory="90">
+                <span class="opt-icon">🦐</span>
+                <div class="opt-info">
+                  <strong>Udang Segar (+8k)</strong>
+                  <span>Kenikmatan seafood manis</span>
+                </div>
+              </button>
+              <button class="opt-pill" data-type="filling" data-name="Ayam Kampung Suwir" data-price="7000" data-sweet="10" data-savory="85">
+                <span class="opt-icon">🍗</span>
+                <div class="opt-info">
+                  <strong>Ayam Kampung Suwir (+7k)</strong>
+                  <span>Daging padat gurih berbumbu</span>
+                </div>
+              </button>
+              <button class="opt-pill" data-type="filling" data-name="Daging Kepiting Bakau" data-price="12000" data-sweet="30" data-savory="95">
+                <span class="opt-icon">🦀</span>
+                <div class="opt-info">
+                  <strong>Kepiting Bakau Premium (+12k)</strong>
+                  <span>Juicy & super mewah</span>
+                </div>
+              </button>
+              <button class="opt-pill" data-type="filling" data-name="Mozzarella Lumer" data-price="6000" data-sweet="10" data-savory="70">
+                <span class="opt-icon">🧀</span>
+                <div class="opt-info">
+                  <strong>Mozzarella Molor (+6k)</strong>
+                  <span>Sensasi keju tarik viral</span>
+                </div>
+              </button>
+              <button class="opt-pill" data-type="filling" data-name="Telur Orak-Arik Bawang" data-price="3000" data-sweet="0" data-savory="70">
+                <span class="opt-icon">🍳</span>
+                <div class="opt-info">
+                  <strong>Telur Bebek Orak-Arik (+3k)</strong>
+                  <span>Rempah harum khas Semarang</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Sauces & Garnishes -->
+          <div class="ingredient-step-box">
+            <div class="step-num-title">
+              <span class="step-num">3</span>
+              <h4>PILIH SAUS & KONDIMEN:</h4>
+            </div>
+            <div class="options-pill-grid" id="sauceOptions">
+              <button class="opt-pill active" data-type="sauce" data-name="Saus Bawang Kental Kanjeng" data-spicy="0">
+                <span class="opt-icon">🥣</span>
+                <div class="opt-info"><strong>Saus Bawang Kental Khas</strong></div>
+              </button>
+              <button class="opt-pill" data-type="sauce" data-name="Sambal Mercon Rawit" data-spicy="95">
+                <span class="opt-icon">🔥</span>
+                <div class="opt-info"><strong>Sambal Mercon Rawit Merah</strong></div>
+              </button>
+              <button class="opt-pill active" data-type="sauce" data-name="Acar Timun & Rawit Ijo" data-spicy="30">
+                <span class="opt-icon">🥒</span>
+                <div class="opt-info"><strong>Acar Timun & Rawit Ijo</strong></div>
+              </button>
+              <button class="opt-pill active" data-type="sauce" data-name="Daun Bawang Lokio" data-spicy="10">
+                <span class="opt-icon">🌱</span>
+                <div class="opt-info"><strong>Daun Bawang Lokio Segar</strong></div>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Live Visualizer & Flavor Radar -->
+        <div class="diy-preview-panel">
+          <div class="preview-stage-card">
+            
+            <div class="stage-header">
+              <span class="stage-title">PREVIEW KREASI LUMPIA</span>
+              <span class="live-status-pill">🔴 LIVE RENDER</span>
+            </div>
+
+            <!-- Visual Layering Diagram -->
+            <div class="visual-roll-assembly" id="rollAssembly">
+              <div class="assembly-wrapper">
+                <div class="skin-layer" id="previewSkinLayer">
+                  <div class="skin-texture-effect"></div>
+                  <!-- Dynamic Stack of Fillings Inside -->
+                  <div class="fillings-stack" id="previewFillingsStack">
+                    <!-- Dynamic badges for each chosen filling -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flavor Profile Radar Stats -->
+            <div class="flavor-radar-card">
+              <h5 class="radar-title">PROFIL KARAKTER RASA:</h5>
+              <div class="flavor-bars-container">
+                <div class="flavor-bar-item">
+                  <span class="bar-label">Kerenyahan (Crunch)</span>
+                  <div class="bar-track"><div class="bar-fill crunch-fill" id="barCrunch" style="width: 95%;"></div></div>
+                  <span class="bar-val" id="valCrunch">95%</span>
+                </div>
+                <div class="flavor-bar-item">
+                  <span class="bar-label">Kegurihan (Savory Umami)</span>
+                  <div class="bar-track"><div class="bar-fill umami-fill" id="barUmami" style="width: 85%;"></div></div>
+                  <span class="bar-val" id="valUmami">85%</span>
+                </div>
+                <div class="flavor-bar-item">
+                  <span class="bar-label">Tingkat Pedas (Spice)</span>
+                  <div class="bar-track"><div class="bar-fill spicy-fill" id="barSpicy" style="width: 30%;"></div></div>
+                  <span class="bar-val" id="valSpicy">30%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Summary & Add to Cart -->
+            <div class="diy-order-summary">
+              <div class="summary-price-box">
+                <span class="sum-label">TOTAL HARGA KREASI:</span>
+                <span class="sum-price" id="diyTotalPrice">Rp 20.000</span>
+              </div>
+
+              <button class="diy-roll-btn" id="btnRollAndFry">
+                <span class="fry-anim-icon">🍳</span>
+                <span class="btn-text">GULUNG & MASUKKAN KERANJANG</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: HOT WOK ASMR SIMULATOR -->
+  <section class="section-container wok-section" id="wok-asmr">
+    <div class="wok-card">
+      <div class="wok-text-info">
+        <span class="section-subtitle">PENGALAMAN SENSORI ASMR</span>
+        <h2 class="section-title">Wajan Panas Kanjeng</h2>
+        <p class="section-desc">Rasakan desis minyak kelapa panas mendidih saat lumpia dicelupkan. Geser slider untuk mengatur tingkat kematangan dan dengar perubahan frekuensi suara wajan secara langsung!</p>
+        
+        <!-- Fry Level Slider -->
+        <div class="fry-slider-box">
+          <div class="slider-labels">
+            <span>Kuning Keemasan (Medium)</span>
+            <span class="active-level" id="fryLevelName">Renyah Sempurna (Crispy Gold)</span>
+            <span>Ultra Crunch (Extra Dark)</span>
+          </div>
+          <input type="range" min="1" max="100" value="70" class="tactile-range" id="frySlider">
+        </div>
+
+        <button class="tactile-wok-btn" id="btnTriggerWokSizzle">
+          <span>🔥 Celupkan Lumpia ke Wajan (Sizzle Sound)</span>
+        </button>
+      </div>
+
+      <div class="wok-visual-box">
+        <div class="wok-graphic">
+          <div class="wok-oil-surface" id="wokOilSurface">
+            <div class="wok-bubbles-container" id="wokBubbles"></div>
+            <div class="wok-lumpia-submerged"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: LOKASI, JAM BUKA & NAVIGASI KEDAI -->
+  <section class="section-container location-section" id="location-section">
+    <div class="section-header text-center">
+      <span class="section-subtitle">TEMUKAN KAMI</span>
+      <h2 class="section-title">Kedai & Dapur Utama</h2>
+      <p class="section-desc">Nikmati langsung lumpia panas dari wajan atau pesan pengiriman instan ke rumah Anda.</p>
+    </div>
+
+    <div class="location-grid">
+      
+      <!-- Outlet 1: Pusat Semarang -->
+      <div class="outlet-card active-hub">
+        <div class="outlet-status-badge open">
+          <span class="dot-live"></span>
+          <span>SEDANG MENGGORENG (BUKA)</span>
+        </div>
+        <h3 class="outlet-name">📍 Kedai Pusat - Kota Lama Semarang</h3>
+        <p class="outlet-address">Jl. Letjen Suprapto No. 42, Kawasan Kota Lama, Semarang, Jawa Tengah</p>
+        
+        <div class="outlet-details-list">
+          <div class="detail-row">
+            <span class="icon">⏰</span>
+            <span>Setiap Hari: <strong>08.00 - 22.00 WIB</strong></span>
+          </div>
+          <div class="detail-row">
+            <span class="icon">🛵</span>
+            <span>Layanan: Dine-In, Takeaway, GoFood, GrabFood, ShopeeFood</span>
+          </div>
+          <div class="detail-row">
+            <span class="icon">📞</span>
+            <span>WhatsApp Kedai: <strong>+62 812-8899-7800</strong></span>
+          </div>
+        </div>
+
+        <div class="outlet-actions">
+          <a href="https://maps.google.com" target="_blank" class="btn-outline-loc">🗺️ Buka di Google Maps</a>
+          <button class="btn-wa-order" data-outlet="Semarang">💬 Chat WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- Outlet 2: Jakarta Senopati Hub -->
+      <div class="outlet-card">
+        <div class="outlet-status-badge open">
+          <span class="dot-live"></span>
+          <span>SEDANG MENGGORENG (BUKA)</span>
+        </div>
+        <h3 class="outlet-name">📍 Jakarta Hub - Senopati</h3>
+        <p class="outlet-address">Jl. Senopati Raya No. 18, Kebayoran Baru, Jakarta Selatan</p>
+        
+        <div class="outlet-details-list">
+          <div class="detail-row">
+            <span class="icon">⏰</span>
+            <span>Selasa - Minggu: <strong>10.00 - 21.30 WIB</strong></span>
+          </div>
+          <div class="detail-row">
+            <span class="icon">🛵</span>
+            <span>Pengiriman Instant 1 Jam (Jabodetabek)</span>
+          </div>
+          <div class="detail-row">
+            <span class="icon">📞</span>
+            <span>WhatsApp Hub: <strong>+62 813-7766-5500</strong></span>
+          </div>
+        </div>
+
+        <div class="outlet-actions">
+          <a href="https://maps.google.com" target="_blank" class="btn-outline-loc">🗺️ Buka di Google Maps</a>
+          <button class="btn-wa-order" data-outlet="Jakarta">💬 Chat WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- Outlet 3: Frozen Nusantara -->
+      <div class="outlet-card special-card">
+        <div class="outlet-status-badge shipping">
+          <span>📦 PENGIRIMAN VAKUM SE-INDONESIA</span>
+        </div>
+        <h3 class="outlet-name">❄️ Lumpia Kanjeng Frozen Pack</h3>
+        <p class="outlet-address">Dikemas higienis dengan teknologi *flash-vacuum sealed* + ice gel pack. Tahan 1 bulan di freezer.</p>
+        
+        <div class="outlet-details-list">
+          <div class="detail-row">
+            <span class="icon">🚀</span>
+            <span>Ekspedisi 1 Hari Sampai (Paxel / JNE YES)</span>
+          </div>
+          <div class="detail-row">
+            <span class="icon">✨</span>
+            <span>Lengkap dengan Saus Kental, Acar & Cabe Rawit</span>
+          </div>
+        </div>
+
+        <div class="outlet-actions">
+          <button class="btn-wa-order highlight" data-outlet="Frozen">📦 Pesan Paket Frozen</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 6: FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand-col">
+        <div class="logo-text">
+          <span class="logo-title white">LUMPIA KANJENG</span>
+          <span class="logo-sub gold">RESEP TURUN TEMURUN SEJAK 1978</span>
+        </div>
+        <p class="footer-bio">
+          Dedikasi kami menyajikan kuliner warisan dengan kerenyahan tanpa tanding dan higienitas modern kelas dunia.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Navigasi Cepat</h4>
+        <ul>
+          <li><a href="#menu-section">Menu Lumpia</a></li>
+          <li><a href="#diy-studio">Rakit Sendiri</a></li>
+          <li><a href="#wok-asmr">ASMR Wajan</a></li>
+          <li><a href="#location-section">Lokasi Kedai</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Kontak & Kerjasama</h4>
+        <ul>
+          <li>WhatsApp: +62 812-8899-7800</li>
+          <li>Instagram: @lumpiakanjeng.id</li>
+          <li>Email: halo@lumpiakanjeng.com</li>
+          <li>Semarang & Jakarta, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Lumpia Kanjeng. Mahakarya Kerenyahan Indonesia. Hak Cipta Dilindungi.</p>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR DRAWER & THERMAL RECEIPT PRINTER -->
+  <div class="cart-drawer-backdrop" id="cartBackdrop">
+    <div class="cart-drawer" id="cartDrawer">
+      
+      <div class="cart-header">
+        <div class="cart-header-title">
+          <span class="icon">🛍️</span>
+          <h3>Keranjang Belanja</h3>
+        </div>
+        <button class="close-cart-btn" id="closeCartBtn">×</button>
+      </div>
+
+      <!-- Cart Items List Container -->
+      <div class="cart-body" id="cartItemList">
+        <div class="cart-empty-state" id="cartEmptyState">
+          <span class="empty-emoji">🥢</span>
+          <p>Keranjang masih kosong nih.</p>
+          <span>Pilih menu lezat di atas untuk memulai pesanan!</span>
+        </div>
+      </div>
+
+      <!-- Cart Footer & Checkout Action -->
+      <div class="cart-footer" id="cartFooter">
+        <div class="cart-price-breakdown">
+          <div class="breakdown-row">
+            <span>Subtotal Menu</span>
+            <span id="cartSubtotalText">Rp 0</span>
+          </div>
+          <div class="breakdown-row">
+            <span>Kemasan Besek & Box Aman</span>
+            <span class="free-tag">GRATIS</span>
+          </div>
+          <div class="breakdown-row total-row">
+            <span>Total Pembayaran</span>
+            <span id="cartGrandTotalText" class="grand-total-val">Rp 0</span>
+          </div>
+        </div>
+
+        <button class="btn-checkout-wa" id="btnCheckoutWhatsApp">
+          <span class="wa-icon">💬</span>
+          <span>PESAN LANGSUNG VIA WHATSAPP</span>
+        </button>
+        <button class="btn-print-receipt" id="btnPrintReceipt">
+          <span>🧾 Cetak Struk Pesanan (Thermal Receipt)</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: THERMAL RECEIPT PREVIEW -->
+  <div class="modal-receipt-backdrop" id="receiptModal">
+    <div class="thermal-receipt-paper" id="receiptPaper">
+      <button class="close-receipt-btn" id="closeReceiptBtn">×</button>
+      <div class="receipt-header text-center">
+        <div class="receipt-logo">🥢 LUMPIA KANJENG 🥢</div>
+        <div class="receipt-sub">SEMARANG HERITAGE CRUNCH // EST. 1978</div>
+        <div class="receipt-divider">================================</div>
+        <div class="receipt-meta">
+          <div class="r-row"><span>TANGGAL:</span> <span id="rDate">15/09/2026</span></div>
+          <div class="r-row"><span>NO. ORDER:</span> <span id="rOrderNo">#LK-88912</span></div>
+          <div class="r-row"><span>STATUS:</span> <span>SIAP DIGORENG HANGAT</span></div>
+        </div>
+        <div class="receipt-divider">--------------------------------</div>
+      </div>
+
+      <div class="receipt-items-list" id="rItemsList">
+        <!-- Injected via JS -->
+      </div>
+
+      <div class="receipt-divider">--------------------------------</div>
+      <div class="receipt-total-section">
+        <div class="r-row bold"><span>TOTAL TAGIHAN:</span> <span id="rTotalAmount">Rp 0</span></div>
+        <div class="r-row"><span>METODE:</span> <span>QRIS / TRANSFER / COD</span></div>
+      </div>
+      <div class="receipt-divider">================================</div>
+      
+      <!-- Fake QRIS code for visual delight -->
+      <div class="receipt-qris-box text-center">
+        <div class="qris-box-graphic">
+          <div class="qris-pattern"></div>
+        </div>
+        <span>SCAN QRIS UNTUK PEMBAYARAN CEPAT</span>
+      </div>
+
+      <div class="receipt-footer text-center">
+        <p>MATUR NUWUN // TERIMA KASIH</p>
+        <p>Simpan struk ini untuk klaim garansi kerenyahan!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-hub" id="toastHub"></div>
+
+  <!-- Scripts -->
+  <script src="audio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
