@@ -3,148 +3,438 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - LUMPIA KANJENG</title>
+  <title>Masuk Akun // Member VIP & Mitra Lumpia Kanjeng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="daftar.css">
   <style>
-    .auth-section {
-      min-height: 100vh;
+    /* Specific Auth Login Styling */
+    .auth-page-wrapper {
+      min-height: calc(100vh - 120px);
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 40px 24px;
+      justify-content: center;
+      padding: 40px 20px 80px;
       position: relative;
       z-index: 10;
     }
-    .auth-card {
-      background: radial-gradient(circle at 50% 50%, #1e3328 0%, #11221a 100%);
-      border: 2px solid var(--border-emerald); 
+    .auth-box-container {
+      width: 100%;
+      max-width: 480px;
+      background: linear-gradient(135deg, #15271e 0%, #0c1813 100%);
+      border: 1px solid var(--gold-primary);
       border-radius: var(--radius-lg);
-      padding: 40px;
-      width: 100%;
-      max-width: 440px;
-      box-shadow: var(--shadow-lumpia);
+      padding: 40px 36px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(240, 165, 0, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-box-container::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(240, 165, 0, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .auth-header-block {
       text-align: center;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
     }
-    .auth-header {
-      margin-bottom: 30px;
-    }
-    .auth-title {
-      font-family: var(--font-serif);
-      font-size: 2.5rem;
-      color: #fff;
-      margin-top: 15px;
-      margin-bottom: 5px;
-    }
-    .auth-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-    .form-group {
-      text-align: left;
-      margin-bottom: 20px;
-    }
-    .form-label {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--gold-bright);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
-    .form-control {
-      width: 100%;
-      background: #0c1813;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-cream);
-      font-family: var(--font-sans);
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--gold-primary);
-      box-shadow: 0 0 10px rgba(240, 165, 0, 0.2);
-    }
-    .btn-login {
-      width: 100%;
-      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
-      border: none;
-      color: #111;
-      padding: 14px;
-      border-radius: 40px;
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
+    .auth-emblem-badge {
+      width: 56px;
+      height: 56px;
+      background: radial-gradient(circle, var(--gold-bright) 0%, var(--gold-dark) 100%);
+      border-radius: 50%;
+      display: inline-flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 6px 20px rgba(240, 165, 0, 0.4);
-      margin-top: 30px;
-      transition: all 0.15s ease;
+      font-size: 1.8rem;
+      box-shadow: 0 0 20px rgba(240, 165, 0, 0.4);
+      margin-bottom: 12px;
     }
-    .btn-login:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(240, 165, 0, 0.6);
-    }
-    .back-home {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      margin-top: 25px;
-      transition: color 0.15s ease;
-    }
-    .back-home:hover {
+    .auth-badge-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
       color: var(--gold-bright);
+      background: rgba(240, 165, 0, 0.12);
+      border: 1px solid var(--border-emerald);
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .auth-title-text {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-cream);
+      line-height: 1.2;
+    }
+    .auth-desc-text {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* Auth Mode Tabs */
+    .auth-mode-selector {
+      display: flex;
+      background: #09130e;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .auth-mode-tab {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .auth-mode-tab.active {
+      background: var(--bg-card);
+      color: var(--gold-bright);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(240, 165, 0, 0.3);
+    }
+
+    /* Toggle Password Button */
+    .btn-toggle-pw {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s;
+    }
+    .btn-toggle-pw:hover {
+      color: var(--gold-bright);
+    }
+
+    /* Remember & Forgot Row */
+    .auth-options-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: -6px;
+      margin-bottom: 22px;
+      font-size: 0.8rem;
+    }
+    .btn-forgot-link {
+      background: none;
+      border: none;
+      color: var(--gold-bright);
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      transition: opacity 0.2s;
+    }
+    .btn-forgot-link:hover {
+      opacity: 0.8;
+    }
+
+    /* Quick Demo Login Box */
+    .demo-login-box {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    .demo-login-title {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .demo-chips-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .demo-chip-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text-cream);
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+    .demo-chip-btn:hover {
+      background: rgba(240, 165, 0, 0.1);
+      border-color: var(--gold-primary);
+      color: var(--gold-bright);
+    }
+    .demo-chip-btn span.badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      background: rgba(240, 165, 0, 0.2);
+      color: var(--gold-bright);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Switch to Register footer */
+    .auth-switch-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .auth-switch-footer a {
+      color: var(--gold-bright);
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 4px;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .auth-switch-footer a:hover {
+      border-bottom-color: var(--gold-bright);
+    }
+
+    /* Reset / Forgot Modal */
+    .forgot-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(8, 17, 13, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .forgot-modal.active {
+      display: flex;
+    }
+    .forgot-content {
+      background: #14281e;
+      border: 1px solid var(--gold-primary);
+      border-radius: var(--radius-lg);
+      max-width: 440px;
+      width: 100%;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
     }
   </style>
 </head>
-<body>
-  <!-- Grain & Ambient Steam Background Canvas (Shared from main style) -->
+<body class="daftar-page">
+  <!-- Grain & Ambient Steam Background Canvas -->
+  <canvas id="ambientSteamCanvas" class="ambient-steam-canvas"></canvas>
   <div class="noise-overlay" aria-hidden="true"></div>
 
-  <section class="auth-section">
-    <div class="auth-card">
-      <div class="auth-header">
-        <a href="index.html" class="brand-logo" style="justify-content: center;">
-          <div class="logo-emblem">
-            <span class="emblem-wok">🥢</span>
-          </div>
-        </a>
-        <h2 class="auth-title">Masuk Kedai</h2>
-        <p class="auth-desc">Masuk untuk mengakses portal rahasia Kanjeng.</p>
-      </div>
-      
-      <form action="#" method="POST">
-        <div class="form-group">
-          <label class="form-label" for="username">USERNAME / EMAIL</label>
-          <input type="text" id="username" name="username" class="form-control" placeholder="Masukkan username" required>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label" for="password">PASSWORD RAHASIA</label>
-          <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
-        </div>
-        
-        <button type="submit" class="btn-login">
-          <span>🔥 MASUK KEDAI</span>
-        </button>
-      </form>
-      
-      <a href="index.html" class="back-home">
-        <span>← Kembali ke Halaman Utama</span>
-      </a>
+  <!-- Top Sensory Announcement Bar -->
+  <aside class="sensory-announcement-bar">
+    <div class="announcement-track">
+      <div class="track-item"><span class="badge-dot pulse-gold"></span> PORTAL RESMI ANGGOTA KANJENG CLUB // ESTD. 1978</div>
+      <div class="track-item">👑 DISKON 15% OTOMATIS AKTIF DI SETIAP PESANAN SETELAH LOGIN</div>
+      <div class="track-item">🎁 KLAIM VOUCHER ULANG TAHUN & TUKARKAN CRUNCHPOINTS</div>
+      <div class="track-item"><span class="badge-dot pulse-green"></span> KEDAI BUKA HARI INI HINGGA 22:00 WIB</div>
     </div>
-  </section>
+  </aside>
 
+  <!-- Navbar -->
+  <header class="main-navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-emblem">
+          <span class="emblem-wok">🥢</span>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">LUMPIA KANJENG</span>
+          <span class="logo-sub">ESTD. 1978 // SEMARANG HERITAGE</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">← Kembali ke Beranda</a>
+        <a href="index.html#menu-section" class="nav-link">Daftar Menu</a>
+        <a href="index.html#diy-studio" class="nav-link">Rakit Sendiri</a>
+        <a href="daftar.html" class="nav-link highlight-gold-pill">👑 Daftar Akun Baru</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="asmr-toggle-btn" id="asmrToggleBtn" title="Aktifkan Suara ASMR & Efek">
+          <span class="asmr-icon">🔊</span>
+          <span class="asmr-label">ASMR ON</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- AUTH MAIN WRAPPER -->
+  <main class="auth-page-wrapper">
+    <div class="auth-box-container">
+      
+      <!-- Header -->
+      <div class="auth-header-block">
+        <div class="auth-emblem-badge">
+          <span>🥢</span>
+        </div>
+        <div>
+          <span class="auth-badge-tag" id="authBadgeTag">PORTAL MEMBER VIP</span>
+        </div>
+        <h1 class="auth-title-text" id="authTitleText">Masuk Akun</h1>
+        <p class="auth-desc-text" id="authDescText">
+          Gunakan No. WhatsApp atau Email yang telah terdaftar untuk menikmati hak istimewa Kanjeng Club.
+        </p>
+      </div>
+
+      <!-- Mode Selector (Member vs Mitra) -->
+      <div class="auth-mode-selector">
+        <button type="button" class="auth-mode-tab active" id="tabMemberMode" data-mode="member">
+          <span>👑 Member VIP</span>
+        </button>
+        <button type="button" class="auth-mode-tab" id="tabPartnerMode" data-mode="partner">
+          <span>🤝 Mitra Bisnis</span>
+        </button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" novalidate>
+        
+        <!-- Identifier Input -->
+        <div class="form-group">
+          <label for="loginIdentifier" id="labelIdentifier">No. WhatsApp atau Email Terdaftar <span class="req">*</span></label>
+          <div class="input-with-icon">
+            <span class="input-icon" id="iconIdentifier">📱</span>
+            <input type="text" id="loginIdentifier" name="loginIdentifier" placeholder="Contoh: 08123456789 atau nama@email.com" required autocomplete="username">
+          </div>
+          <span class="field-error" id="errLoginIdentifier"></span>
+        </div>
+
+        <!-- Password / PIN Input -->
+        <div class="form-group">
+          <label for="loginPassword" id="labelPassword">PIN Akses (6 Digit) / Password <span class="req">*</span></label>
+          <div class="input-with-icon">
+            <span class="input-icon">🔑</span>
+            <input type="password" id="loginPassword" name="loginPassword" placeholder="Masukkan 6 digit PIN atau password" required autocomplete="current-password">
+            <button type="button" class="btn-toggle-pw" id="btnTogglePassword" title="Lihat/Sembunyikan PIN">
+              👁️
+            </button>
+          </div>
+          <span class="field-error" id="errLoginPassword"></span>
+        </div>
+
+        <!-- Options: Remember & Forgot -->
+        <div class="auth-options-row">
+          <label class="custom-checkbox" style="gap: 8px;">
+            <input type="checkbox" id="rememberMe" checked>
+            <span class="checkbox-box" style="width: 16px; height: 16px; margin-top: 1px;"></span>
+            <span class="checkbox-label" style="font-size: 0.78rem;">Ingat Sesi Masuk</span>
+          </label>
+          <button type="button" class="btn-forgot-link" id="btnOpenForgot">Lupa PIN?</button>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-submit-reg" id="btnSubmitLogin">
+          <span class="btn-icon">🔥</span>
+          <span class="btn-text" id="btnLoginText">MASUK KE KEDAI KANJENG</span>
+          <span class="btn-arrow">→</span>
+        </button>
+
+      </form>
+
+      <!-- Quick Demo Login -->
+      <div class="demo-login-box">
+        <div class="demo-login-title">⚡ Akun Demo Siap Uji (1-Klik):</div>
+        <div class="demo-chips-group">
+          <button type="button" class="demo-chip-btn" id="btnDemoMember">
+            <div>
+              <strong>👑 Raden Mas Danang</strong>
+              <div style="font-size: 0.68rem; color: var(--text-muted);">081234567890 • PIN: 123456</div>
+            </div>
+            <span class="badge">Member VIP 15%</span>
+          </button>
+          <button type="button" class="demo-chip-btn" id="btnDemoPartner">
+            <div>
+              <strong>🤝 Budi Prasetyo, S.E.</strong>
+              <div style="font-size: 0.68rem; color: var(--text-muted);">081298765432 • PIN: 123456</div>
+            </div>
+            <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">Mitra Franchise</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Switch to Register Link -->
+      <div class="auth-switch-footer">
+        <span>Belum memiliki kartu anggota?</span>
+        <a href="daftar.html" id="linkToRegister">Daftar Sekarang (100% Gratis) →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FORGOT PIN MODAL -->
+  <div class="forgot-modal" id="forgotModal">
+    <div class="forgot-content">
+      <button class="modal-close-btn" id="closeForgotModal" style="top: 12px; right: 14px;">×</button>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <span style="font-size: 2rem;">🔑</span>
+        <h3 style="font-size: 1.3rem; margin-top: 8px;">Pemulihan PIN Akun</h3>
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">
+          Masukkan No. WhatsApp yang terdaftar untuk menerima bantuan pemulihan PIN.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="forgotPhone">Nomor WhatsApp Terdaftar:</label>
+        <div class="input-with-icon">
+          <span class="input-icon">📱</span>
+          <input type="tel" id="forgotPhone" placeholder="08123456789">
+        </div>
+        <span class="field-error" id="errForgot"></span>
+      </div>
+
+      <button type="button" class="btn-submit-reg" id="btnSubmitForgot" style="padding: 12px;">
+        <span>📲 Hubungi Admin via WhatsApp</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Hub -->
+  <div class="toast-hub" id="toastHub"></div>
+
+  <!-- Scripts -->
+  <script src="audio.js"></script>
+  <script src="login.js"></script>
 </body>
 </html>

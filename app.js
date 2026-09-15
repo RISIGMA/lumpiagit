@@ -13,8 +13,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartEmptyState = document.getElementById('cartEmptyState');
   const cartSubtotalText = document.getElementById('cartSubtotalText');
   const cartGrandTotalText = document.getElementById('cartGrandTotalText');
+  const cartMemberNotice = document.getElementById('cartMemberNotice');
+  const cartMemberDiscountRow = document.getElementById('cartMemberDiscountRow');
+  const cartMemberDiscountText = document.getElementById('cartMemberDiscountText');
+  const navAuthSlot = document.getElementById('navAuthSlot');
   const btnCheckoutWhatsApp = document.getElementById('btnCheckoutWhatsApp');
   const btnPrintReceipt = document.getElementById('btnPrintReceipt');
+
+  // Authentication State Controller
+  function getLoggedUser() {
+    return JSON.parse(localStorage.getItem('kanjeng_current_user') || 'null');
+  }
+
+  function syncNavbarAuth() {
+    if (!navAuthSlot) return;
+    const user = getLoggedUser();
+    if (user && user.name) {
+      const firstName = user.name.split(' ')[0];
+      const tierLabel = user.tier ? user.tier.replace('MEMBER', '').trim() : 'VIP';
+      navAuthSlot.innerHTML = `
+        <div class="nav-user-widget">
+          <span class="nav-user-info">
+            👑 ${firstName}
+            <span class="tier-badge">${tierLabel}</span>
+          </span>
+          <button class="nav-btn-logout" id="btnLogoutNav" title="Keluar dari akun">Keluar</button>
+        </div>
+      `;
+      const btnLogout = document.getElementById('btnLogoutNav');
+      if (btnLogout) {
+        btnLogout.addEventListener('click', () => {
+          if (window.lumpiaAudio) window.lumpiaAudio.playClick();
+          localStorage.removeItem('kanjeng_current_user');
+          showToast('Anda telah keluar dari akun.');
+          syncNavbarAuth();
+          renderCart();
+        });
+      }
+    } else {
+      navAuthSlot.innerHTML = `
+        <a href="login.html" class="nav-link" id="navLoginLink">Masuk</a>
+        <a href="daftar.html" class="nav-link highlight-gold-pill" id="navRegisterLink">👑 Daftar</a>
+      `;
+    }
+  }
+  syncNavbarAuth();
 
   // Hero Lumpia Bite elements
   const lumpiaHeroItem = document.getElementById('lumpiaHeroItem');
@@ -521,8 +564,36 @@ document.addEventListener('DOMContentLoaded', () => {
       cartItemList.appendChild(row);
     });
 
+    const user = getLoggedUser();
+    const isMember = user && user.discountPercent;
+    const discount = isMember ? Math.round(subtotal * (user.discountPercent / 100)) : 0;
+    const grandTotal = subtotal - discount;
+
+    if (cartMemberNotice) {
+      if (isMember) {
+        cartMemberNotice.innerHTML = `
+          <span>👑 Diskon 15% VIP aktif untuk <strong>${user.name.split(' ')[0]}</strong></span>
+          <span style="color: var(--gold-bright); font-size: 0.72rem;">HEMAT Rp ${discount.toLocaleString('id-ID')}</span>
+        `;
+      } else {
+        cartMemberNotice.innerHTML = `
+          <span>💡 Member Kanjeng Club dapat diskon 15%!</span>
+          <a href="login.html" id="cartAuthLink">Masuk / Daftar</a>
+        `;
+      }
+    }
+
+    if (cartMemberDiscountRow && cartMemberDiscountText) {
+      if (isMember && discount > 0) {
+        cartMemberDiscountRow.style.display = 'flex';
+        cartMemberDiscountText.textContent = `-Rp ${discount.toLocaleString('id-ID')}`;
+      } else {
+        cartMemberDiscountRow.style.display = 'none';
+      }
+    }
+
     cartSubtotalText.textContent = `Rp ${subtotal.toLocaleString('id-ID')}`;
-    cartGrandTotalText.textContent = `Rp ${subtotal.toLocaleString('id-ID')}`;
+    cartGrandTotalText.textContent = `Rp ${grandTotal.toLocaleString('id-ID')}`;
   }
 
   cartTriggerBtn.addEventListener('click', () => {
@@ -546,6 +617,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const user = getLoggedUser();
+    const isMember = user && user.discountPercent;
+
     let subtotal = 0;
     let text = '*HALO DAPUR LUMPIA KANJENG! Saya mau pesan lumpia hangat:*%0A%0A';
     cart.forEach((item, idx) => {
@@ -554,7 +628,15 @@ document.addEventListener('DOMContentLoaded', () => {
       text += `*${idx + 1}. ${item.name}* (x${item.qty})%0A   - Ket: ${item.subtext}%0A   - Harga: Rp ${lineTotal.toLocaleString('id-ID')}%0A%0A`;
     });
 
-    text += `*TOTAL TAGIHAN: Rp ${subtotal.toLocaleString('id-ID')}*%0A`;
+    const discount = isMember ? Math.round(subtotal * (user.discountPercent / 100)) : 0;
+    const grandTotal = subtotal - discount;
+
+    text += `*SUBTOTAL: Rp ${subtotal.toLocaleString('id-ID')}*%0A`;
+    if (isMember) {
+      text += `*👑 MEMBER VIP KANJENG CLUB:* ${user.name} (ID: ${user.id})%0A`;
+      text += `*DISKON 15% VIP: -Rp ${discount.toLocaleString('id-ID')}*%0A`;
+    }
+    text += `*TOTAL PEMBAYARAN: Rp ${grandTotal.toLocaleString('id-ID')}*%0A`;
     text += `*Metode: Pengiriman Instan / Dine-in*%0A`;
     text += `Mohon konfirmasi ketersediaan & nomor rekening/QRIS ya Kak. Terima kasih!`;
 
@@ -569,16 +651,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const user = getLoggedUser();
+    const isMember = user && user.discountPercent;
+
     window.lumpiaAudio.playRegisterDing();
     const now = new Date();
     rDate.textContent = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + now.toTimeString().split(' ')[0];
     rOrderNo.textContent = '#LK-' + Math.floor(Math.random() * 90000 + 10000);
 
     rItemsList.innerHTML = '';
-    let total = 0;
+    let subtotal = 0;
     cart.forEach(item => {
       const lineTotal = item.price * item.qty;
-      total += lineTotal;
+      subtotal += lineTotal;
       const row = document.createElement('div');
       row.className = 'r-row';
       row.innerHTML = `
@@ -588,7 +673,22 @@ document.addEventListener('DOMContentLoaded', () => {
       rItemsList.appendChild(row);
     });
 
-    rTotalAmount.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    const discount = isMember ? Math.round(subtotal * (user.discountPercent / 100)) : 0;
+    const grandTotal = subtotal - discount;
+
+    if (isMember && discount > 0) {
+      const discRow = document.createElement('div');
+      discRow.className = 'r-row';
+      discRow.style.color = '#b87c00';
+      discRow.style.fontWeight = 'bold';
+      discRow.innerHTML = `
+        <span>👑 Diskon VIP (15%):</span>
+        <span>-Rp ${discount.toLocaleString('id-ID')}</span>
+      `;
+      rItemsList.appendChild(discRow);
+    }
+
+    rTotalAmount.textContent = `Rp ${grandTotal.toLocaleString('id-ID')}`;
     receiptModal.classList.add('open');
   });
 
